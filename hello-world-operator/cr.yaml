@@ -1,0 +1,7 @@
+apiVersion: hello.example.com/v1
+kind: HelloWorld
+metadata:
+  name: hello-example
+spec:
+  message: "Hello from my first operator!"
+  count: 5

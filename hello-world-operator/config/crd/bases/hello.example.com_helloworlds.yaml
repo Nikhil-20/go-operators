@@ -1,0 +1,84 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.22.0
+  name: helloworlds.hello.example.com
+spec:
+  group: hello.example.com
+  names:
+    kind: HelloWorld
+    listKind: HelloWorldList
+    plural: helloworlds
+    singular: helloworld
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.phase
+      name: Phase
+      type: string
+    - jsonPath: .spec.message
+      name: Message
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1
+    schema:
+      openAPIV3Schema:
+        description: HelloWorld is the Schema for the helloworlds API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: spec defines the desired state of HelloWorld
+            properties:
+              count:
+                description: Count is the number of times to display the message
+                format: int32
+                maximum: 100
+                minimum: 1
+                type: integer
+              message:
+                description: Message is the message to display
+                type: string
+            required:
+            - message
+            type: object
+          status:
+            description: status defines the observed state of HelloWorld
+            properties:
+              configMapCreated:
+                description: ConfigMapCreated indicates if the ConfigMap was created
+                type: boolean
+              lastUpdated:
+                description: LastUpdated is when the status was last updated
+                format: date-time
+                type: string
+              phase:
+                description: Phase represents the current phase
+                type: string
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

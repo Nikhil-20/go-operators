@@ -1,0 +1,15 @@
+apiVersion: hello.example.com/v1
+kind: HelloWorld
+metadata:
+  name: hello-1
+spec:
+  message: "First hello"
+  count: 3
+---
+apiVersion: hello.example.com/v1
+kind: HelloWorld
+metadata:
+  name: hello-2
+spec:
+  message: "Second hello"
+  count: 7

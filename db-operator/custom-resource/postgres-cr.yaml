@@ -1,0 +1,11 @@
+apiVersion: database.db-operator.io/v1
+kind: Database
+metadata:
+  name: my-database
+spec:
+  image: postgres:14
+  replicas: 1
+  databaseName: mydb
+  username: admin
+  storage:
+    size: 10Gi

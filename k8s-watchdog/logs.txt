@@ -1,0 +1,17 @@
+K8s watch dog starting...
+watchign resources : [pods] in namespaces:[default kube-system]
+2026/09/08 09:40:54 working with incluster kubernetes config
+2026/09/08 09:40:54 Starting the kube pod watch
+2026/09/08 09:40:54 Setting up watch for namespace: kube-system
+2026/09/08 09:40:54 Setting up watch for namespace: default
+E0908 09:40:54.153381       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+Pod added: default/k8s-watchdog-deployment-75c7b5cdf6-vqkw4
+Pod added: default/nginx-7f8fbb96d-kw65h
+2026/09/08 09:40:54 Cache synced for namespace: default. Ready to watch events.
+E0908 09:40:55.120387       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+E0908 09:40:56.864848       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+E0908 09:41:00.477979       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+E0908 09:41:07.177960       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+E0908 09:41:22.693093       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+E0908 09:41:53.977599       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"
+E0908 09:42:35.376950       1 reflector.go:227] "Failed to watch" err="failed to list *v1.Pod: pods is forbidden: User \"system:serviceaccount:default:pod-watcher-sa\" cannot list resource \"pods\" in API group \"\" in the namespace \"kube-system\"" logger="UnhandledError" reflector="pkg/mod/k8s.io/client-go@v0.36.3/tools/cache/reflector.go:343" type="*v1.Pod"

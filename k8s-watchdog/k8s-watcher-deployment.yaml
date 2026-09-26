@@ -1,0 +1,113 @@
+# k8s-watcher-deployment.yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pod-watcher-sa
+  namespace: default
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pod-watcher-clusterrole
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list","watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pod-watcher-global-binding
+subjects:
+  - kind: ServiceAccount
+    name: pod-watcher-sa       # Your existing SA name
+    namespace: default        # The namespace where your pod/SA lives
+roleRef:
+  kind: ClusterRole
+  name: pod-watcher-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-watcher-role
+  namespace: default
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get", "list", "watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-watcher-rolebinding # Binds the Role to the Service Account
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: pod-watcher-sa
+  namespace: default
+roleRef:
+  kind: Role
+  name: pod-watcher-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-watchdog-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-watchdog
+  template:
+     metadata:
+       labels:
+         app: k8s-watchdog
+     spec:
+       serviceAccountName: pod-watcher-sa
+       containers:
+       - name: watchdog-container
+         image: k8s-watchdog:latest
+         imagePullPolicy: Always
+
+         volumeMounts:
+         - name: config-volume
+           mountPath: /app/config.yaml
+           subPath: config.yaml
+       volumes:
+       - name: config-volume
+         configMap:
+           name: k8s-watchdog-config
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8s-watchdog-config # This ConfigMap will hold our config.yaml content
+  namespace: default
+data:
+  config.yaml: | # The content of your config.yaml goes here
+    watch:
+      resources:
+        - pods
+      namespaces:
+        - default
+        - kube-system
+    notifier:
+      type: stdout
