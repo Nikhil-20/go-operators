@@ -1,4 +1,4 @@
-module k8s-watchdog
+module k8s-watcher
 
 go 1.26.0
 

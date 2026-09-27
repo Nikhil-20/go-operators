@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"k8s-watchdog/config"
-	"k8s-watchdog/pkg/kube"
-	"k8s-watchdog/watcher"
+	"k8s-watcher/config"
+	"k8s-watcher/pkg/kube"
+	"k8s-watcher/watcher"
 	"log"
 	"os"
 	"os/signal"

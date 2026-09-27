@@ -13,7 +13,7 @@ COPY . .
 
 # Build the go application 
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /k8s-watchdog ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /k8s-watcher ./main.go
 
 FROM alpine:latest
 
@@ -21,8 +21,8 @@ RUN addgroup -S watcher && adduser -S watcher -G watcher
 
 WORKDIR /app
 
-COPY --from=builder --chown=watcher:watcher /k8s-watchdog .
+COPY --from=builder --chown=watcher:watcher /k8s-watcher .
 
 USER watcher
 
-CMD ["/app/k8s-watchdog"]
+CMD ["/app/k8s-watcher"]

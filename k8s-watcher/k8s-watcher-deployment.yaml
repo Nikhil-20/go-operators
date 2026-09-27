@@ -67,22 +67,22 @@ roleRef:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-watchdog-deployment
+  name: k8s-watcher-deployment
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: k8s-watchdog
+      app: k8s-watcher
   template:
      metadata:
        labels:
-         app: k8s-watchdog
+         app: k8s-watcher
      spec:
        serviceAccountName: pod-watcher-sa
        containers:
-       - name: watchdog-container
-         image: k8s-watchdog:latest
+       - name: watcher-container
+         image: k8s-watcher:latest
          imagePullPolicy: Always
 
          volumeMounts:
@@ -92,14 +92,14 @@ spec:
        volumes:
        - name: config-volume
          configMap:
-           name: k8s-watchdog-config
+           name: k8s-watcher-config
 
 ---
 
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: k8s-watchdog-config # This ConfigMap will hold our config.yaml content
+  name: k8s-watcher-config # This ConfigMap will hold our config.yaml content
   namespace: default
 data:
   config.yaml: | # The content of your config.yaml goes here
