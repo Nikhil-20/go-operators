@@ -80,6 +80,10 @@ type DatabaseStatus struct {
 
 	// SecretName is the name of the Secret containing database credentials
 	SecretName string `json:"secretName,omitempty"`
+
+	Conditions []metav1.Condition `json:"conditions,omitempty"`
+
+	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
 }
 
 // +kubebuilder:object:root=true

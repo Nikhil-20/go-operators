@@ -34,7 +34,7 @@ import (
 )
 
 // Name returns the name of the Secret for this Database
-func Name(db *databasev1.Database) string {
+func GetName(db *databasev1.Database) string {
 	return fmt.Sprintf("%s-credentials", db.Name)
 }
 
@@ -50,7 +50,7 @@ func generatePassword(length int) (string, error) {
 // Reconcile ensures the credentials Secret exists
 func ReconcileSecret(ctx context.Context, c client.Client, scheme *runtime.Scheme, db *databasev1.Database) error {
 	logger := log.FromContext(ctx)
-	secretName := Name(db)
+	secretName := GetName(db)
 
 	sec := &corev1.Secret{}
 	err := c.Get(ctx, client.ObjectKey{

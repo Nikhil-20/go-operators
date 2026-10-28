@@ -1,0 +1,6 @@
+{
+    "go.alternateTools": {
+        "gopls": "/home/nikhil/go/bin/gopls"
+    },
+    "go.useLanguageServer": true
+}
