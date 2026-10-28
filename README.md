@@ -7,7 +7,7 @@ A collection of Kubernetes operators and tooling written in Go using [Kubebuilde
 | Project | Description |
 |---|---|
 | [db-operator](db-operator/) | Kubebuilder operator that manages a `Database` custom resource, provisioning a PostgreSQL StatefulSet, Service and Secret from the CR spec (image, replicas, storage, credentials). |
-| [hello-world-operator](hello-world-operator/) | Kubebuilder operator that manages a `HelloWorld` custom resource, used as a minimal example/scaffold for building new operators. |
+| [basic-operator-example](basic-operator-example/) | Kubebuilder operator that manages a `HelloWorld` custom resource, used as a minimal example/scaffold for building new operators. |
 | [k8s-watcher](k8s-watcher/) | Standalone controller (no CRD) that uses `client-go` informers to watch Pod add/delete events across configured namespaces and logs them. |
 
 Each project is a self-contained Go module with its own `go.mod`, `Dockerfile`, and Kubernetes manifests under `config/` (or plain YAML for `k8s-watcher`). See each project's own README for setup and deployment instructions.
@@ -23,6 +23,6 @@ Each project is a self-contained Go module with its own `go.mod`, `Dockerfile`, 
 
 ```
 db-operator/            # Database CR operator (Kubebuilder)
-hello-world-operator/   # HelloWorld CR operator (Kubebuilder)
+basic-operator-example/   # HelloWorld CR operator (Kubebuilder)
 k8s-watcher/            # Pod-watching controller (client-go informers)
 ```
